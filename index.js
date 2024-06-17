@@ -12,7 +12,7 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000', // Use the client origin from environment variables
+    origin: 'scholary-tube.vercel.app', // Use the client origin from environment variables
     credentials: true // Allow credentials (cookies) to be sent
 }));
 
