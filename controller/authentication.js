@@ -22,7 +22,8 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
     try {
-        const user = await DYuser.findOne({ name: req.body.name });
+        console.log(req.body);
+        const user = await DYuser.findOne({ email: req.body.email });
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
