@@ -1,8 +1,12 @@
 import express from 'express';
 import DYuser from '../models/userModel.js';
+import cookieParser from 'cookie-parser';
+
+const app = express();
+
+app.use(cookieParser());
 
 export const updateUser = async(req,res)=>{
-  console.log("that");
     if(req.params.id === req.user.id){
         try{
 
@@ -116,7 +120,6 @@ export const updateAcceptReq = async (req, res) => {
 
 export const updateRejectReq = async (req, res) => {
   try{
-    console.log("ok");
     const UpdateRole = await DYuser.findByIdAndUpdate(req.params.id,{
       $set : {role: "student"}
     }, {new: true} );
@@ -125,5 +128,19 @@ export const updateRejectReq = async (req, res) => {
   }
   catch(err){
     return res.status(500).json("error in handling req");
+  }
+}
+
+export const logoutFun = async (req, res) => {
+  try{
+    res.clearCookie('access_token', {
+      httpOnly: true,
+      secure: true, // Set to true if using HTTPS
+      sameSite: 'None' // Adjust according to your needs
+    });
+    res.status(200).send({ message: 'Logged out successfully' });
+  }
+  catch(err){
+    return res.status(500).json("error in logging out");
   }
 }
