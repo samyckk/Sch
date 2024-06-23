@@ -1,8 +1,6 @@
 import express from 'express';
-import { updateUser, deleteUser, getUser, subscribe, unsubscribe,applyEdu,reqVerify,updateAcceptReq,updateRejectReq } from '../controller/user.js';
+import { updateUser, deleteUser, getUser, subscribe, unsubscribe,applyEdu,reqVerify,updateAcceptReq,updateRejectReq, logoutFun } from '../controller/user.js';
 import { tokenChecker } from '../controller/verifyToken.js';
-
-
 
 const router = express.Router();
 
@@ -28,5 +26,7 @@ router.get('/req', tokenChecker, reqVerify);
 router.put('/updateAcceptReq/:id', tokenChecker, updateAcceptReq);
 
 router.put('/updateRejectReq/:id', tokenChecker, updateRejectReq);
+
+router.put('/logout', logoutFun);
 
 export default router;
