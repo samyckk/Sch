@@ -133,12 +133,13 @@ export const updateRejectReq = async (req, res) => {
 
 export const logoutFun = async (req, res) => {
   try{
-    res.clearCookie('access_token', {
-      httpOnly: false,
-      secure: true, // Set to true if using HTTPS
-      sameSite: 'None' // Adjust according to your needs
-    });
-    res.status(200).send({ message: 'Logged out successfully' });
+      if(req.cookies.access_token){
+        res.status(200).json(true);
+      }
+      else{
+        res.status(200).json(false);
+      }
+    
   }
   catch(err){
     return res.status(500).json("error in logging out");
