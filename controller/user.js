@@ -134,7 +134,7 @@ export const updateRejectReq = async (req, res) => {
 export const logoutFun = async (req, res) => {
   try{
     res.clearCookie('access_token', {
-      httpOnly: true,
+      httpOnly: false,
       secure: true, // Set to true if using HTTPS
       sameSite: 'None' // Adjust according to your needs
     });
