@@ -27,6 +27,6 @@ router.put('/updateAcceptReq/:id', tokenChecker, updateAcceptReq);
 
 router.put('/updateRejectReq/:id', tokenChecker, updateRejectReq);
 
-router.put('/logout', logoutFun);
+router.get('/logout', logoutFun);
 
 export default router;
