@@ -19,7 +19,7 @@ app.use(cors({
 dotenv.config();
 
 const connection = async () =>{
-    const URL = `mongodb+srv://samyck:1234@blog-app.ywqvnes.mongodb.net/?retryWrites=true&w=majority&appName=blog-app`
+    const URL = process.env.MONGODB;
     try {
         console.log("trying to connect to mongoose");
         await mongoose.connect(URL);
