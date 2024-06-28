@@ -84,7 +84,7 @@ export const subscribe = async (req, res) => {
 export const applyEdu = async (req, res) => {
     try{
       const applier = await DYuser.findByIdAndUpdate(req.user.id,{
-        $set : {role : "requested"}
+        $set : {role : "uploader"}
       }, {new : true});
 
       return res.status(200).json(applier);
