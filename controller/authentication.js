@@ -8,8 +8,22 @@ dotenv.config();
 
 export const signup = async (req, res) => {
     try {
+        if(req.body.name === ""){
+            return res.status(502).json({message: "Name is required"});
+        }
+        if(req.body.email === ""){
+            return res.status(502).json({message: "Email is required"});
+        }
+        if(req.body.password === ""){
+            return res.status(502).json({message: "Password is required"});
+        }
         const hashPass = await bcrypt.hashSync(req.body.password, 8);
         const newUser = new DYuser(req.body);
+        const pastUser = await DYuser.findOne({email: req.body.email});
+        console.log(pastUser);
+        if(pastUser){
+            return res.status(502).json({message: "Email already registered"});
+        }
         newUser.password = hashPass;
         await newUser.save();
 
